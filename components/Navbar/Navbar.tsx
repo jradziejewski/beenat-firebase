@@ -45,14 +45,24 @@ function Navbar() {
           <NavigationMenu>
             <NavigationMenuList className="text-base flex flex-col gap-5 my-5 lg:my-0 lg:flex-row lg:justify-between">
               <NavigationMenuItem>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  className={navigationMenuTriggerStyle()}
+                >
                   <Link className="lg:px-5 py-2" href="/">
                     Home
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <NavigationMenuLink
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
+                  className={navigationMenuTriggerStyle()}
+                >
                   <Link className="lg:px-5 py-2" href="/about">
                     About
                   </Link>
@@ -60,6 +70,9 @@ function Navbar() {
               </NavigationMenuItem>
               <NavigationMenuItem className="w-full">
                 <NavigationMenuLink
+                  onClick={() => {
+                    setIsOpen(false);
+                  }}
                   className={`${navigationMenuTriggerStyle()} bg-primary text-secondary`}
                 >
                   <Link className="lg:px-5 py-2" href="/login">
