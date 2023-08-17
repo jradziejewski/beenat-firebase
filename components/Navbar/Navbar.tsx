@@ -25,7 +25,7 @@ function Navbar() {
     <motion.header
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="absolute w-full top-0 border-b border-primary py-2"
+      className="absolute w-full top-0 border-b border-primary py-2 z-10 bg-background"
     >
       <div className="flex items-center justify-between xl:max-w-7xl xl:mx-auto max-w-full px-[8%] flex-wrap w-full">
         <span className="select-none font-mono font-extrabold text-xl">
