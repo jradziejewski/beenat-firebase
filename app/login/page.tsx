@@ -1,9 +1,5 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/Auth/Auth";
 
 export const metadata: Metadata = {
@@ -13,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AuthenticationPage() {
   return (
-    <div className="h-full flex align-middle">
+    <div className="h-full flex">
       <div className="mx-auto flex w-full flex-col justify-center my-auto space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
