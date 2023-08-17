@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} ${cn(
+          " bg-background font-sans antialiased py-14"
+        )}`}
+      >
         <Navbar />
-        {children}
+        <div className="h-full container mx-auto px-4">{children}</div>
       </body>
     </html>
   );
