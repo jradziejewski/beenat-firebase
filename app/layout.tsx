@@ -20,11 +20,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${inter.className} ${cn(
-          " bg-background font-sans antialiased py-14"
+          " bg-background font-sans antialiased pt-14",
         )}`}
       >
         <Navbar />
-        <div className="h-full container mx-auto px-4">{children}</div>
+        <div className="h-full w-full">{children}</div>
       </body>
     </html>
   );
