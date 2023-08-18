@@ -45,40 +45,50 @@ function Navbar() {
           <NavigationMenu>
             <NavigationMenuList className="text-base flex flex-col gap-5 my-5 lg:my-0 lg:flex-row lg:justify-between">
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  onClick={() => {
-                    setIsOpen(false);
-                  }}
-                  className={navigationMenuTriggerStyle()}
-                >
-                  <Link className="lg:px-5 py-2" href="/">
+                <Link className="lg:px-5 py-2" legacyBehavior passHref href="/">
+                  <NavigationMenuLink
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                    className={navigationMenuTriggerStyle()}
+                  >
                     Home
-                  </Link>
-                </NavigationMenuLink>
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink
-                  onClick={() => {
-                    setIsOpen(false);
-                  }}
-                  className={navigationMenuTriggerStyle()}
+                <Link
+                  className="lg:px-5 py-2"
+                  legacyBehavior
+                  passHref
+                  href="/about"
                 >
-                  <Link className="lg:px-5 py-2" href="/about">
+                  <NavigationMenuLink
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                    className={navigationMenuTriggerStyle()}
+                  >
                     About
-                  </Link>
-                </NavigationMenuLink>
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuItem className="w-full">
-                <NavigationMenuLink
-                  onClick={() => {
-                    setIsOpen(false);
-                  }}
-                  className={`${navigationMenuTriggerStyle()} bg-primary text-secondary`}
+                <Link
+                  className="lg:px-5 py-2"
+                  legacyBehavior
+                  passHref
+                  href="/login"
                 >
-                  <Link className="lg:px-5 py-2" href="/login">
+                  <NavigationMenuLink
+                    onClick={() => {
+                      setIsOpen(false);
+                    }}
+                    className={`${navigationMenuTriggerStyle()} bg-primary text-secondary`}
+                  >
                     Log In
-                  </Link>
-                </NavigationMenuLink>
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
