@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { UserAuthForm } from "@/components/Auth/Auth";
+import { UserAuthForm } from "@/components/Auth/SignIn";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Authentication",
@@ -12,14 +13,16 @@ export default function AuthenticationPage() {
     <div className="h-full flex">
       <div className="mx-auto flex w-full flex-col justify-center my-auto space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Create an account
-          </h1>
+          <h1 className="text-2xl font-semibold tracking-tight">Log In</h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email below to create your account
+            Enter your email & password below to log in
           </p>
         </div>
         <UserAuthForm />
+        <p className="text-sm text-foreground mx-auto">Need an account?</p>
+        <Button variant="link" className="w-full">
+          <Link href="/signup">Sign up</Link>
+        </Button>
         <p className="px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}
           <Link

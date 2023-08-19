@@ -1,7 +1,7 @@
 "use client";
-
-import * as React from "react";
-
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signUp } from "@/firebase/auth";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
@@ -11,15 +11,34 @@ import { Label } from "@/components/ui/label";
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordConfirm, setPasswordConfirm] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+
+  const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
+    setErrorMessage("");
     setIsLoading(true);
 
-    setTimeout(() => {
+    if (password !== passwordConfirm) {
       setIsLoading(false);
-    }, 3000);
+      return setErrorMessage("Passwords do not match.");
+    }
+
+    const { result, error } = await signUp(email, password);
+    setIsLoading(false);
+
+    if (error) {
+      return setErrorMessage("Something went wrong.");
+    }
+
+    console.log(result);
+    return router.push("/");
   }
 
   return (
@@ -33,10 +52,28 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             <Input
               id="email"
               placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
+              disabled={isLoading}
+            />
+            <Input
+              id="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              disabled={isLoading}
+            />
+            <Input
+              id="password-confirm"
+              placeholder="Confirm Password"
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+              type="password"
               disabled={isLoading}
             />
           </div>
@@ -44,8 +81,13 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
+            Sign Up
           </Button>
+          {errorMessage && (
+            <p className="text-xs text-destructive  text-center">
+              {errorMessage}
+            </p>
+          )}
         </div>
       </form>
       <div className="relative">
