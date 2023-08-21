@@ -13,6 +13,7 @@ import {
   navigationMenuTriggerStyle,
 } from "../ui/navigation-menu";
 import { Button } from "../ui/button";
+import LogInOutButton from "@/components/Auth/LogInOutButton";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,21 +77,7 @@ function Navbar() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem className="w-full">
-                <Link
-                  className="lg:px-5 py-2"
-                  legacyBehavior
-                  passHref
-                  href="/login"
-                >
-                  <NavigationMenuLink
-                    onClick={() => {
-                      setIsOpen(false);
-                    }}
-                    className={`${navigationMenuTriggerStyle()} bg-primary text-secondary`}
-                  >
-                    Log In
-                  </NavigationMenuLink>
-                </Link>
+                <LogInOutButton />
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>

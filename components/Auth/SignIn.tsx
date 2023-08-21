@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { signIn } from "@/firebase/auth";
+import { useAuthContext } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
@@ -14,6 +15,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const authContext = useAuthContext();
 
   const router = useRouter();
 
@@ -33,7 +35,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
 
     console.log(result);
-    return router.push("/");
+    return router.push("/dashboard");
+  }
+
+  if (authContext?.user) {
+    redirect("/dashboard");
   }
 
   return (

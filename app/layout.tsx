@@ -26,7 +26,10 @@ export default function RootLayout({
       >
         <Navbar />
         <div className="h-full w-full">
-          <AuthContextProvider>{children}</AuthContextProvider>
+          <AuthContextProvider>
+            <Navbar />
+            {children}
+          </AuthContextProvider>
         </div>
       </body>
     </html>

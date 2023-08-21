@@ -2,7 +2,7 @@ import { UserAuthForm } from "@/components/Auth/SignUp";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-function page() {
+export default function Page() {
   return (
     <div className="h-full flex">
       <div className="mx-auto flex w-full flex-col justify-center my-auto space-y-6 sm:w-[350px]">
@@ -42,5 +42,3 @@ function page() {
     </div>
   );
 }
-
-export default page;
