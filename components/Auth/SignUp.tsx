@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { signUp } from "@/firebase/auth";
 import { useAuthContext } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
@@ -17,8 +17,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const user = useAuthContext();
-
-  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -40,7 +38,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     }
 
     console.log(result);
-    return router.push("/dashboard");
   }
 
   if (user) {
