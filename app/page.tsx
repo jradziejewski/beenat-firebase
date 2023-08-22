@@ -1,7 +1,15 @@
+"use client";
 import { Button } from "@/components/ui/button";
+import { useAuthContext } from "@/context/AuthContext";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default function Home() {
+  const user = useAuthContext();
+  if (user) {
+    return redirect("/dashboard");
+  }
+
   return (
     <div className="h-full w-full flex flex-col lg:flex-row">
       <main className="container m-auto w-full text-center lg:text-left lg:w-[50%] pl-10">

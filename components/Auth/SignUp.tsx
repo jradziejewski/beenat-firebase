@@ -16,7 +16,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const authContext = useAuthContext();
+  const user = useAuthContext();
 
   const router = useRouter();
 
@@ -43,7 +43,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     return router.push("/dashboard");
   }
 
-  if (authContext?.user) {
+  if (user) {
     redirect("/dashboard");
   }
 

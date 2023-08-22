@@ -13,11 +13,7 @@ import { motion } from "framer-motion";
 
 const auth = getAuth(firebase_app);
 
-interface AuthContextType {
-  user: User | null;
-}
-
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<User | null>(null);
 
 export const useAuthContext = () => useContext(AuthContext);
 
@@ -38,7 +34,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={user ? { user } : null}>
+    <AuthContext.Provider value={user}>
       {loading ? (
         <div
           style={{

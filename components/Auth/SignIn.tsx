@@ -15,7 +15,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const authContext = useAuthContext();
+  const user = useAuthContext();
 
   const router = useRouter();
 
@@ -30,7 +30,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     if (error) {
       return setErrorMessage(
-        "Could not log in. Please check your credentials.",
+        "Could not log in. Please check your credentials."
       );
     }
 
@@ -38,7 +38,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     return router.push("/dashboard");
   }
 
-  if (authContext?.user) {
+  if (user) {
     redirect("/dashboard");
   }
 

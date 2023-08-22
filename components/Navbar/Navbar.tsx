@@ -2,18 +2,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  NavigationMenuItem,
-  NavigationMenuLink,
-} from "@radix-ui/react-navigation-menu";
 import { FiMenu, FiX } from "react-icons/fi";
-import {
-  NavigationMenu,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
 import { Button } from "../ui/button";
-import LogInOutButton from "@/components/Auth/LogInOutButton";
+import NavbarLinks from "./NavbarLinks";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,42 +36,7 @@ function Navbar() {
             isOpen ? "block" : "hidden"
           } lg:block min-h-10 w-full flex justify-center lg:items-center lg:w-auto transition-all ease-in-out delay-150`}
         >
-          <NavigationMenu>
-            <NavigationMenuList className="text-base flex flex-col gap-5 my-5 lg:my-0 lg:flex-row lg:justify-between">
-              <NavigationMenuItem>
-                <Link className="lg:px-5 py-2" legacyBehavior passHref href="/">
-                  <NavigationMenuLink
-                    onClick={() => {
-                      setIsOpen(false);
-                    }}
-                    className={navigationMenuTriggerStyle()}
-                  >
-                    Home
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link
-                  className="lg:px-5 py-2"
-                  legacyBehavior
-                  passHref
-                  href="/about"
-                >
-                  <NavigationMenuLink
-                    onClick={() => {
-                      setIsOpen(false);
-                    }}
-                    className={navigationMenuTriggerStyle()}
-                  >
-                    About
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem className="w-full">
-                <LogInOutButton />
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <NavbarLinks closeNavbar={() => setIsOpen(false)} />
         </nav>
       </div>
     </motion.header>

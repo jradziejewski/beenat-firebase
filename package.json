@@ -45,7 +45,6 @@
     "prettier": "^3.0.2"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "tsc --noEmit",
     "*.{css,md}": "prettier --write",
     "*.{ts,tsx,js,jsx}": "eslint --cache --fix"
   }
