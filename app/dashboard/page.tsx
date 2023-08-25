@@ -2,8 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import addData from "@/firebase/firestore/addData";
-import getData from "@/firebase/firestore/getData";
+import { addData, getData } from "@/firebase/firestore";
 import { useEffect, useState } from "react";
 import { EventItem } from "@/types";
 import Link from "next/link";
@@ -34,7 +33,7 @@ export default function Page() {
   }, []);
 
   async function handleAddData() {
-    const data = {
+    const data: EventItem = {
       artist: "Ghost",
       place: "Gdansk",
     };
