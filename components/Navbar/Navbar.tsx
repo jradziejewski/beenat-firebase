@@ -6,7 +6,7 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { Button } from "../ui/button";
 import NavbarLinks from "./NavbarLinks";
 
-function Navbar() {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   function handleOpenNavbar() {
@@ -42,5 +42,3 @@ function Navbar() {
     </motion.header>
   );
 }
-
-export default Navbar;

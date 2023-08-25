@@ -14,7 +14,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 
-function NavbarLinks({ closeNavbar }: { closeNavbar: () => void }) {
+export default function NavbarLinks({
+  closeNavbar,
+}: {
+  closeNavbar: () => void;
+}) {
   const user = useAuthContext();
   const router = useRouter();
 
@@ -80,5 +84,3 @@ function NavbarLinks({ closeNavbar }: { closeNavbar: () => void }) {
     </NavigationMenu>
   );
 }
-
-export default NavbarLinks;

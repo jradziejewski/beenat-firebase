@@ -3,7 +3,7 @@ import { useAuthContext } from "@/context/AuthContext";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-function Page() {
+export default function Page() {
   const user = useAuthContext();
   const router = useRouter();
 
@@ -11,5 +11,3 @@ function Page() {
     router.push("/login");
   } else return <div>hello :D</div>;
 }
-
-export default Page;
