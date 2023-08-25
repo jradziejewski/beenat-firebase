@@ -1,4 +1,4 @@
-import { UserAuthForm } from "@/components/Auth/SignUp";
+import { SignUp } from "@/components/Auth";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ export default function Page() {
             Enter your email below to create your account
           </p>
         </div>
-        <UserAuthForm />
+        <SignUp />
         <p className="text-sm text-foreground mx-auto">
           Already have an account?
         </p>

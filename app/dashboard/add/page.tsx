@@ -2,6 +2,7 @@
 import { useAuthContext } from "@/context/AuthContext";
 import React from "react";
 import { useRouter } from "next/navigation";
+import AddEvent from "@/components/Events/AddEvent";
 
 export default function Page() {
   const user = useAuthContext();
@@ -9,5 +10,10 @@ export default function Page() {
 
   if (user == null) {
     router.push("/login");
-  } else return <div>hello :D</div>;
+  } else
+    return (
+      <div>
+        <AddEvent />
+      </div>
+    );
 }

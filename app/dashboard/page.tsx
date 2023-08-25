@@ -6,6 +6,7 @@ import addData from "@/firebase/firestore/addData";
 import getData from "@/firebase/firestore/getData";
 import { useEffect, useState } from "react";
 import { EventItem } from "@/types";
+import Link from "next/link";
 
 export default function Page() {
   const [event, setEvent] = useState<Array<EventItem>>([]);
@@ -50,8 +51,14 @@ export default function Page() {
     router.push("/login");
   } else
     return (
-      <div className="w-full h-full flex items-center justify-center">
+      <div className="w-full h-full flex items-center flex-col justify-center">
         <h1>Welcome to your profile!</h1>
+        <Link href="/dashboard/see">
+          <Button variant="link">See your events</Button>
+        </Link>
+        <Link href="/dashboard/add">
+          <Button variant="link">Add event</Button>
+        </Link>
         <Button onClick={handleAddData}>Add Data</Button>
         <div>
           {event ? (
