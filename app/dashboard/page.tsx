@@ -48,23 +48,22 @@ export default function Page() {
 
   if (user == null) {
     router.push("/login");
-  }
-
-  return (
-    <div className="w-full h-full flex items-center justify-center">
-      <h1>Welcome to your profile!</h1>
-      <Button onClick={handleAddData}>Add Data</Button>
-      <div>
-        {event ? (
-          <div>
-            {event.map((key) => {
-              return <div key={key.id}>{key.artist}</div>;
-            })}
-          </div>
-        ) : (
-          <span>Loading...</span>
-        )}
+  } else
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        <h1>Welcome to your profile!</h1>
+        <Button onClick={handleAddData}>Add Data</Button>
+        <div>
+          {event ? (
+            <div>
+              {event.map((key) => {
+                return <div key={key.id}>{key.artist}</div>;
+              })}
+            </div>
+          ) : (
+            <span>Loading...</span>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
