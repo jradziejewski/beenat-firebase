@@ -2,35 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { useAuthContext } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import { addData, getData } from "@/firebase/firestore";
-import { useEffect, useState } from "react";
+import { addData } from "@/firebase/firestore";
 import { EventItem } from "@/types";
 import Link from "next/link";
 
 export default function Page() {
-  const [event, setEvent] = useState<Array<EventItem>>([]);
   const user = useAuthContext();
   const router = useRouter();
-
-  useEffect(() => {
-    async function getEventData() {
-      const { resultArr, error } = await getData("event");
-
-      if (error) {
-        return console.log(error);
-      }
-
-      const events: Array<EventItem> = resultArr.map((item: EventItem) => ({
-        id: item.id,
-        artist: item.artist,
-        place: item.place,
-      }));
-
-      setEvent(events);
-    }
-
-    getEventData();
-  }, []);
 
   async function handleAddData() {
     const data: EventItem = {
@@ -59,17 +37,6 @@ export default function Page() {
           <Button variant="link">Add event</Button>
         </Link>
         <Button onClick={handleAddData}>Add Data</Button>
-        <div>
-          {event ? (
-            <div>
-              {event.map((key) => {
-                return <div key={key.id}>{key.artist}</div>;
-              })}
-            </div>
-          ) : (
-            <span>Loading...</span>
-          )}
-        </div>
       </div>
     );
 }

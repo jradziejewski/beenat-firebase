@@ -12,7 +12,7 @@ export default function Page() {
     router.push("/login");
   } else
     return (
-      <div>
+      <div className="w-full h-full flex items-center flex-col justify-center">
         <SeeEvents />
       </div>
     );
