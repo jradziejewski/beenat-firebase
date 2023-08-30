@@ -32,15 +32,7 @@ export default function UserAuthForm({
       setIsLoading(false);
       return setErrorMessage("Passwords do not match.");
     }
-
-    const { result, error } = await signUp(email, password);
-    setIsLoading(false);
-
-    if (error) {
-      return setErrorMessage("Something went wrong.");
-    }
-
-    console.log(result);
+    await signUp(email, password);
   }
 
   if (user) {

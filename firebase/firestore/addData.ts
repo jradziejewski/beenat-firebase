@@ -1,8 +1,6 @@
 import { EventItem } from "@/types";
-import firebase_app from "../config";
-import { getFirestore, addDoc, collection } from "firebase/firestore";
-
-const db = getFirestore(firebase_app);
+import { db } from "../config";
+import { addDoc, collection } from "firebase/firestore";
 
 export default async function addData(collectionName: string, data: EventItem) {
   let result = null;

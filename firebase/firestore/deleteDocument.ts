@@ -1,7 +1,5 @@
-import firebase_app from "../config";
-import { getFirestore, doc, deleteDoc } from "firebase/firestore";
-
-const db = getFirestore(firebase_app);
+import { db } from "../config";
+import { doc, deleteDoc } from "firebase/firestore";
 
 export default async function deleteDataEntry(
   collectionName: string,

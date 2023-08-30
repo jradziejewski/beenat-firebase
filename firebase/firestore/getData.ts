@@ -1,8 +1,6 @@
-import firebase_app from "../config";
+import { db } from "../config";
 import { EventItem } from "@/types";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
-
-const db = getFirestore(firebase_app);
+import { getDocs, collection } from "firebase/firestore";
 
 export default async function getDocument(collectionName: string) {
   let result = null;
