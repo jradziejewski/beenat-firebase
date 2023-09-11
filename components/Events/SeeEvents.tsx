@@ -1,4 +1,4 @@
-import { deleteDocument, getData } from "@/firebase/firestore";
+import { deleteDataEntry, getDocument } from "@/firebase/firestore";
 import { EventItem } from "@/types";
 import React, { useEffect, useState } from "react";
 
@@ -6,7 +6,7 @@ export default function SeeEvents() {
   const [events, setEvents] = useState<Array<EventItem>>([]);
 
   async function getEventData() {
-    const { resultArr, error } = await getData("event");
+    const { resultArr, error } = await getDocument("event");
 
     if (error) {
       return console.log(error);
@@ -26,7 +26,7 @@ export default function SeeEvents() {
   }, []);
 
   async function deleteEvent(id: string) {
-    const { result, error } = await deleteDocument("event", id);
+    const { result, error } = await deleteDataEntry("event", id);
 
     if (error) {
       console.log(error);
