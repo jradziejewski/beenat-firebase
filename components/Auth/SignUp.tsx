@@ -16,6 +16,7 @@ export default function UserAuthForm({
   ...props
 }: UserAuthFormProps) {
   const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [passwordConfirm, setPasswordConfirm] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -32,7 +33,7 @@ export default function UserAuthForm({
       setIsLoading(false);
       return setErrorMessage("Passwords do not match.");
     }
-    await signUp(email, password);
+    await signUp(email, username, password);
   }
 
   if (user) {
@@ -47,8 +48,19 @@ export default function UserAuthForm({
                 Email
               </Label>
               <Input
+                id="username"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                type="text"
+                autoCapitalize="none"
+                autoComplete="username"
+                autoCorrect="off"
+                disabled={isLoading}
+              />
+              <Input
                 id="email"
-                placeholder="name@example.com"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 type="email"

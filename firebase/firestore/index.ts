@@ -1,4 +1,4 @@
-import { EventItem } from "@/types";
+import { EventItem, UserData } from "@/types";
 import { db } from "../config";
 import {
   addDoc,
@@ -6,6 +6,7 @@ import {
   doc,
   deleteDoc,
   getDocs,
+  getDoc,
 } from "firebase/firestore";
 
 export async function addData(collectionName: string, data: EventItem) {
@@ -21,6 +22,28 @@ export async function addData(collectionName: string, data: EventItem) {
   return { result, error };
 }
 
+export async function getUserData(uid: string): Promise<UserData> {
+  let result = null;
+
+  const docRef = doc(db, "users", uid);
+
+  try {
+    result = await getDoc(docRef);
+  } catch (e) {
+    console.log(e);
+  }
+
+  result = result?.data();
+
+  const userData: UserData = {
+    id: result?.uid,
+    email: result?.email,
+    username: result?.username,
+    event_ids: result?.event_ids,
+  };
+
+  return userData;
+}
 export async function getDocument(collectionName: string) {
   let result = null;
   let error = null;

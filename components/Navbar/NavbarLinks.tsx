@@ -13,14 +13,26 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { getUserData } from "@/firebase/firestore";
+import { UserData } from "@/types";
 
 export default function NavbarLinks({
   closeNavbar,
 }: {
   closeNavbar: () => void;
 }) {
+  const [userData, setUserData] = useState<UserData | null>(null);
   const user = useAuthContext();
   const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      getUserData(user.uid).then((data) => {
+        setUserData(data);
+      });
+    }
+  }, [user]);
 
   async function onLogOut(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -65,7 +77,7 @@ export default function NavbarLinks({
         <NavigationMenuItem className="w-full">
           {user ? (
             <>
-              {`Logged in as  ${user.email} | `}
+              {`Logged in as  ${userData?.username} | `}
               <Button variant="link" onClick={onLogOut}>
                 Log out
               </Button>
