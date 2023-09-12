@@ -7,6 +7,8 @@ import {
   deleteDoc,
   getDocs,
   getDoc,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 
 export async function addData(collectionName: string, data: EventItem) {
@@ -44,6 +46,7 @@ export async function getUserData(uid: string): Promise<UserData> {
 
   return userData;
 }
+
 export async function getDocument(collectionName: string) {
   let result = null;
   let error = null;
@@ -57,7 +60,7 @@ export async function getDocument(collectionName: string) {
   const resultArr: Array<EventItem> = [];
 
   result?.forEach((doc) => {
-    resultArr.push({ id: doc.id, ...doc.data() } as EventItem);
+    resultArr.push({ ...doc.data() } as EventItem);
   });
 
   return { resultArr, error };
@@ -74,4 +77,12 @@ export async function deleteDataEntry(collectionName: string, id: string) {
   }
 
   return { result, error };
+}
+
+export async function pushEventToUserCollection(event_id: string, uid: string) {
+  const docRef = doc(db, "users", uid);
+
+  await updateDoc(docRef, {
+    event_ids: arrayUnion(event_id),
+  });
 }

@@ -6,7 +6,9 @@ export type UserData = {
 };
 
 export type EventItem = {
+  id: string;
   artist: string;
   place: string;
-  id?: string;
+  datetime: string;
+  setlist: string;
 };
